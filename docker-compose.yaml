@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:12.3
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+  api:
+    image: platform-api
+    env_file:
+      - api.env
+    environment:
+      - PLATFORM_API_BACKEND_MTLS_CERT=./dev/cert.pem
+      - PLATFORM_API_BACKEND_MTLS_KEY=./dev/key.key
+      - PLATFORM_API_BACKEND_CLIENT_MTLS_CERT=./dev/client-cert.pem
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    depends_on:
+      - db
+  migrations:
+    image: platform-api-migration
+    env_file:
+      - api.env
+    depends_on:
+      - db
+  bot:
+    image: discord-bot
+    entrypoint: ["npm", "run", "docker-start"]
+    env_file:
+      - bot.env
+    environment:
+      - PORT=3000
+      - BACKEND_MTLS_CERT=./dev/cert.pem
+      - BACKEND_MTLS_KEY=./dev/key.key
+      - DISCORD_BOT_POSTGRES_USER=postgres
+      - DISCORD_BOT_POSTGRES_PASSWORD=postgres
+      - DISCORD_BOT_POSTGRES_DB=postgres
+      - DISCORD_BOT_POSTGRES_HOST=db
+      - DISCORD_BOT_POSTGRES_PORT=5432
