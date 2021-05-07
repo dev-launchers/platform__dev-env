@@ -16,6 +16,7 @@ services:
       - PLATFORM_API_BACKEND_MTLS_CERT=./dev/cert.pem
       - PLATFORM_API_BACKEND_MTLS_KEY=./dev/key.key
       - PLATFORM_API_BACKEND_CLIENT_MTLS_CERT=./dev/client-cert.pem
+      - PLATFORM_API_ENVIRONMENT=development
     ports:
       - "3000:3000"
       - "3001:3001"
