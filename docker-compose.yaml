@@ -42,3 +42,5 @@ services:
       - DISCORD_BOT_POSTGRES_DB=postgres
       - DISCORD_BOT_POSTGRES_HOST=db
       - DISCORD_BOT_POSTGRES_PORT=5432
+    depends_on:
+      - db
