@@ -15,8 +15,11 @@ services:
     environment:
       - PLATFORM_API_BACKEND_MTLS_CERT=./dev/cert.pem
       - PLATFORM_API_BACKEND_MTLS_KEY=./dev/key.key
-      - PLATFORM_API_BACKEND_CLIENT_MTLS_CERT=./dev/client-cert.pem
       - PLATFORM_API_ENVIRONMENT=development
+      - PLATFORM_API_POSTGRES_USER=postgres
+      - PLATFORM_API_POSTGRES_PASSWORD=postgres
+      - PLATFORM_API_POSTGRES_DB=postgres
+      - PLATFORM_API_POSTGRES_HOST=db
     ports:
       - "3000:3000"
       - "3001:3001"
@@ -26,6 +29,11 @@ services:
     image: platform-api-migration
     env_file:
       - api.env
+    environment:
+      - PLATFORM_API_POSTGRES_USER=postgres
+      - PLATFORM_API_POSTGRES_PASSWORD=postgres
+      - PLATFORM_API_POSTGRES_DB=postgres
+      - PLATFORM_API_POSTGRES_HOST=db
     depends_on:
       - db
   bot:

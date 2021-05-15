@@ -1,6 +1,17 @@
 # Dev Launchers platform dev env
 This repository hosts the docker-compose file to run the api, bot and database to emulate the backend environment.
 
+# Prerequisites
+1. Docker
+We will use Docker to build and manage containers
+Pick the Docker for your operating systems.
+For Windows, refer to https://docs.docker.com/docker-for-windows/install/.
+For Mac, refer to https://docs.docker.com/docker-for-mac/install/.
+2. Tilt
+We use Tilt to provide a frontend for docker-compose, and rebuild containers when source is changed.
+Refer to https://docs.tilt.dev/install.html to install tilt.
+We are not using kubernetes, so skip kubernetes installation.
+
 # Setup
 ```
 ├── plaform__api
@@ -9,4 +20,5 @@ This repository hosts the docker-compose file to run the api, bot and database t
 ```
 
 # Running
-In the parent directory of this repo, run `platform__dev-env/run.sh`
+In the root directory of this repo, run `run.sh`. Tilt will automatically detect change in source and handle restarts.
+It also provides an UI to read logs from each container, and restart them at http://localhost:10350/.
