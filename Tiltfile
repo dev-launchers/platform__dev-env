@@ -22,4 +22,10 @@ docker_build('discord-bot', bot_dir,
     restart_container()
   ]
 )
+docker_build('discord-bot-migration', bot_dir, dockerfile='%s/api/docker/migrations/Dockerfile' % bot_dir,
+  live_update = [
+    sync(bot_dir, '/usr/src/app'),
+    restart_container()
+  ]
+)
 docker_compose('docker-compose.yaml')
