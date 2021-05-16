@@ -1,1 +1,1 @@
-tilt up && tilt down
+tilt up $@ && tilt down $@
