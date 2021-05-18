@@ -16,3 +16,6 @@ services:
       - DISCORD_BOT_POSTGRES_PORT=5432
     depends_on:
       - db
+      - migrations
+    migrations:
+      image: discord-bot-migration
