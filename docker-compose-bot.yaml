@@ -1,10 +1,8 @@
 version: "3.9"
 services:
-  bot:
+  discord-bot:
     image: discord-bot
     entrypoint: ["npm", "run", "docker-start"]
-    env_file:
-      - bot.env
     environment:
       - PORT=3000
       - BACKEND_MTLS_CERT=./dev/cert.pem
@@ -16,6 +14,14 @@ services:
       - DISCORD_BOT_POSTGRES_PORT=5432
     depends_on:
       - db
-      - migrations
-    migrations:
-      image: discord-bot-migration
+      - discord-bot-migrations
+  discord-bot-migrations:
+    image: discord-bot-migrations
+    environment:
+      - DISCORD_BOT_POSTGRES_USER=postgres
+      - DISCORD_BOT_POSTGRES_PASSWORD=postgres
+      - DISCORD_BOT_POSTGRES_DB=postgres
+      - DISCORD_BOT_POSTGRES_HOST=db
+      - DISCORD_BOT_POSTGRES_PORT=5432
+    depends_on:
+      - db

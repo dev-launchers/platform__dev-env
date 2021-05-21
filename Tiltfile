@@ -25,6 +25,12 @@ def run_bot():
     ]
   )
 
+  docker_build('discord-bot-migrations', bot_dir, dockerfile='%s/api/docker/migrations/Dockerfile' % bot_dir,
+    live_update = [
+      sync(bot_dir, '/usr/src/app'),
+      restart_container()
+    ]
+  )
 
 # https://docs.tilt.dev/tiltfile_config.html
 config.define_string_list("to-run", args=True)
@@ -38,7 +44,7 @@ for arg in cfg.get('to-run', []):
     resources += ['api', 'api-migrations']
   elif arg == 'bot':
     run_bot()
-    resources += ['bot']
- 
+    resources += ['discord-bot', 'discord-bot-migrations']
+
 docker_compose(services)
 config.set_enabled_resources(resources)
