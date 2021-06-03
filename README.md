@@ -25,8 +25,8 @@ If you don't know the env var, just ask in the backend-chat channel on discord a
 should send you all the env vars.
 
 # Running
-In the root directory of this repo, run `run.sh` to spin up all services. If that doesn't work try running `./run.sh`.
-If you only want to run a subset of services run `run.sh <service 1>, <service 2> ... <service n>`.
-For example, if you only want to run the api, run `run.sh api`. If you want to run the bot, run `run.sh bot`.
+In the root directory of this repo, run `./run.sh` to spin up all services.
+If you only want to run a subset of services run `./run.sh <service 1>, <service 2> ... <service n>`.
+For example, if you only want to run the api, run `./run.sh api`. If you want to run the bot, run `./run.sh bot`.
 Tilt will automatically detect change in source and handle restarts.
 It also provides an UI to read logs from each container, and restart them at http://localhost:10350/.
