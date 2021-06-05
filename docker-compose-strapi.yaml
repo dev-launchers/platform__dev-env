@@ -12,3 +12,7 @@ services:
       - '1337:1337'
     depends_on:
       - db
+    volumes:
+      - ../strapi:/srv/app
+      # Map empty volume so docker doesn't use node_modules from host
+      - /srv/app/node_modules/

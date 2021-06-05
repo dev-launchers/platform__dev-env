@@ -34,13 +34,7 @@ def run_bot():
 
 def run_strapi():
   strapi_dir = '../strapi'
-  docker_build('strapi', strapi_dir ,
-    live_update = [
-      sync(strapi_dir, '/srv/app'),
-      run('npm install --production', trigger='package.json'),
-      restart_container()
-    ]
-  )
+  docker_build('strapi', strapi_dir, dockerfile='%s/Dockerfile.dev' % strapi_dir, ignore=['.strapi-updater.json*'])
 
 # https://docs.tilt.dev/tiltfile_config.html
 config.define_string_list("to-run", args=True)
