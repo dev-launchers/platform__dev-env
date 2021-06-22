@@ -34,7 +34,7 @@ def run_bot():
 
 def run_strapi():
   strapi_dir = '../strapi'
-  docker_build('strapi', strapi_dir, dockerfile='%s/Dockerfile.dev' % strapi_dir, ignore=['.strapi-updater.json*'])
+  docker_build('strapi', strapi_dir, dockerfile='%s/Dockerfile.dev' % strapi_dir, only=['package.json', 'package-lock.json'])
 
 # https://docs.tilt.dev/tiltfile_config.html
 config.define_string_list("to-run", args=True)
