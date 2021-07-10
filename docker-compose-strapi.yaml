@@ -9,6 +9,8 @@ services:
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=postgres
       - URL=http://localhost:1337
+      - FRONTEND_URL=http://localhost:3006
+      - DOMAIN=localhost
     ports:
       - '1337:1337'
     depends_on:
