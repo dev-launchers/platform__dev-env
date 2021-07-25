@@ -11,6 +11,8 @@ services:
       - URL=http://localhost:1337
       - FRONTEND_URL=http://localhost:3006
       - DOMAIN=localhost
+      - AUDIT_FREQ_MINUTES=2
+      - STRAPI_LOG_LEVEL=debug
     ports:
       - '1337:1337'
     depends_on:
