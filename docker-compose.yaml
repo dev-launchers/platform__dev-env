@@ -8,3 +8,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - 5432:5432
+  tunnel:
+    image: cloudflare/cloudflared:2021.11.0
+    command: ["cloudflared", "tunnel", "--config=/etc/tunnel/config.yaml"]
+    volumes:
+      - ./tunnel-config.yaml:/etc/cloudflared/config.yaml
