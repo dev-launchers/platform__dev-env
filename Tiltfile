@@ -52,6 +52,8 @@ for arg in cfg.get('to-run', []):
   elif arg == 'strapi':
     run_strapi()
     resources += ['strapi']
+  elif arg == 'collaboration':
+    resources += ['tunnel']
 
 docker_compose(services)
 config.set_enabled_resources(resources)
