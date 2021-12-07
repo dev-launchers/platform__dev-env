@@ -31,6 +31,13 @@ For example, if you only want to run the api, run `./run.sh api`. If you want to
 Tilt will automatically detect change in source and handle restarts.
 It also provides an UI to read logs from each container, and restart them at http://localhost:10350/.
 
+# Persistent Database
+Database is persisted across runs. You can clean up the volume by selecting `y` when you terminate `./run.sh`.
+```
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+```
+
 # Remote Collaboration
 You can share your dev environment by adding `collaboration` to the end of the service list.
 For example, `./run.sh strapi collaboration`. This will create a temporary tunnel for someone
