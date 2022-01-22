@@ -13,6 +13,7 @@ services:
       - DOMAIN=localhost
       - AUDIT_FREQ_MINUTES=2
       - STRAPI_LOG_LEVEL=debug
+      - OPEN_POSITIONS_DISCORD_WEBHOOK="not_used"
     ports:
       - '1337:1337'
     depends_on:
